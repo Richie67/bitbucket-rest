@@ -227,6 +227,4 @@ public interface RepositoryApi {
     @GET
     LabelsPage getLabels(@PathParam("project") String project,
                          @PathParam("repo") String repo);
-
-
 }
