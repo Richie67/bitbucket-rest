@@ -86,6 +86,19 @@ public interface RepositoryApi {
                     @PayloadParam("newProject") String newProject,
                     @PayloadParam("newRepo") String newRepo);
 
+    @Named("repository:move")
+    @Documentation({"https://developer.atlassian.com/server/bitbucket/rest/v819/api-group-project/#api-api-latest-projects-projectkey-repos-repositoryslug-put"})
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/api/{jclouds.api-version}/projects/{project}/repos/{repo}")
+    @Payload("%7B \"name\": \"{repo}\", \"forkable\": false, \"project\": %7B \"key\": \"{newProject}\" %7D,\"public\": {public} %7D")
+    @Fallback(BitbucketFallbacks.RepositoryOnError.class)
+    @PUT
+    Repository move(@PathParam("project") String project,
+                    @PathParam("repo") @PayloadParam("repo") String repo,
+                    @PayloadParam("newProject") String newProject,
+                    @PayloadParam("public") boolean publicRepo
+    );
+
     @Named("repository:delete")
     @Documentation({"https://developer.atlassian.com/static/rest/bitbucket-server/latest/bitbucket-rest.html#idm45888277567792"})
     @Consumes(MediaType.APPLICATION_JSON)
@@ -214,4 +227,6 @@ public interface RepositoryApi {
     @GET
     LabelsPage getLabels(@PathParam("project") String project,
                          @PathParam("repo") String repo);
+
+
 }
