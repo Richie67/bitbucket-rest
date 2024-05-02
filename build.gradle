@@ -39,7 +39,6 @@ dependencies {
     // The transitive dependencies that are exposed via the public API of this project
     api "com.google.code.gson:gson:${gsonVersion}"
 
-
     // implementation  'javax.javaee-api:7.0'
     implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
     implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
